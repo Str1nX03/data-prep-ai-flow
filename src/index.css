@@ -49,10 +49,18 @@ All colors MUST be HSL.
     /* Gradients */
     --gradient-sapphire: linear-gradient(135deg, hsl(210 100% 50%) 0%, hsl(210 100% 60%) 100%);
     --gradient-dark: linear-gradient(135deg, hsl(220 27% 8%) 0%, hsl(220 27% 12%) 100%);
+    --gradient-radial: radial-gradient(circle at center, hsl(210 100% 50% / 0.15) 0%, transparent 50%);
+    --gradient-animated: linear-gradient(45deg, hsl(210 100% 50%), hsl(220 100% 60%), hsl(240 100% 70%), hsl(210 100% 50%));
     
     /* Shadows */
     --shadow-sapphire: 0 0 30px hsl(210 100% 50% / 0.3);
     --shadow-glow: 0 0 60px hsl(210 100% 60% / 0.2);
+    --shadow-intense: 0 0 100px hsl(210 100% 50% / 0.4);
+    --shadow-card: 0 10px 40px hsl(220 27% 8% / 0.3);
+
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --radius: 0.5rem;
 
@@ -120,4 +128,167 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Advanced Animations and Effects */
+@layer components {
+  .animated-gradient {
+    background: var(--gradient-animated);
+    background-size: 200% 200%;
+    animation: gradientShift 4s ease infinite;
+  }
+
+  .particle-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    background: radial-gradient(circle, hsl(210 100% 50% / 0.8) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: floatParticle 8s ease-in-out infinite;
+  }
+
+  .morphing-blob {
+    position: absolute;
+    background: radial-gradient(circle, hsl(210 100% 50% / 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(20px);
+    animation: morphBlob 10s ease-in-out infinite;
+  }
+
+  .glitch-text {
+    position: relative;
+  }
+
+  .glitch-text::before,
+  .glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    animation: glitch 2s infinite linear alternate-reverse;
+  }
+
+  .glitch-text::before {
+    color: hsl(0 100% 50%);
+    animation-delay: -0.5s;
+  }
+
+  .glitch-text::after {
+    color: hsl(120 100% 50%);
+    animation-delay: -1s;
+  }
+
+  .hover-lift {
+    transition: var(--transition-bounce);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-intense);
+  }
+
+  .magnetic-effect {
+    transition: var(--transition-smooth);
+  }
+
+  .pulse-ring {
+    position: absolute;
+    border: 2px solid hsl(210 100% 50% / 0.3);
+    border-radius: 50%;
+    animation: pulseRing 2s ease-out infinite;
+  }
+
+  .text-shimmer {
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      hsl(210 100% 70% / 0.8) 50%,
+      transparent 70%
+    );
+    background-size: 200% 200%;
+    animation: shimmer 3s ease-in-out infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes floatParticle {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  50% { 
+    transform: translateY(-100px) rotate(180deg); 
+    opacity: 0.8;
+  }
+}
+
+@keyframes morphBlob {
+  0%, 100% { 
+    transform: scale(1) rotate(0deg);
+    border-radius: 50%;
+  }
+  25% { 
+    transform: scale(1.3) rotate(90deg);
+    border-radius: 30% 70% 60% 40% / 40% 30% 70% 60%;
+  }
+  50% { 
+    transform: scale(0.8) rotate(180deg);
+    border-radius: 60% 40% 30% 70% / 70% 60% 40% 30%;
+  }
+  75% { 
+    transform: scale(1.1) rotate(270deg);
+    border-radius: 40% 60% 70% 30% / 30% 40% 60% 70%;
+  }
+}
+
+@keyframes glitch {
+  0% { clip-path: polygon(0 2%, 100% 2%, 100% 5%, 0 5%); }
+  2% { clip-path: polygon(0 15%, 100% 15%, 100% 15%, 0 15%); }
+  4% { clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%); }
+  6% { clip-path: polygon(0 1%, 100% 1%, 100% 2%, 0 2%); }
+  8% { clip-path: polygon(0 33%, 100% 33%, 100% 33%, 0 33%); }
+  10% { clip-path: polygon(0 44%, 100% 44%, 100% 44%, 0 44%); }
+  12% { clip-path: polygon(0 50%, 100% 50%, 100% 20%, 0 20%); }
+  14% { clip-path: polygon(0 70%, 100% 70%, 100% 70%, 0 70%); }
+  16% { clip-path: polygon(0 80%, 100% 80%, 100% 80%, 0 80%); }
+  18% { clip-path: polygon(0 50%, 100% 50%, 100% 55%, 0 55%); }
+  20% { clip-path: polygon(0 70%, 100% 70%, 100% 80%, 0 80%); }
+  21.9% { opacity: 1; }
+  22%, 100% { opacity: 0; }
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
 }
