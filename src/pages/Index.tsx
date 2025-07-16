@@ -31,11 +31,14 @@ const Index = () => {
         const elementVisible = 150;
         
         if (elementTop < window.innerHeight - elementVisible) {
+          element.classList.remove('opacity-0');
           element.classList.add('animate-fade-in');
         }
       });
     };
 
+    // Trigger initial check
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
