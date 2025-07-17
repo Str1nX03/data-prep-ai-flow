@@ -29,7 +29,7 @@ const HeroSection = () => {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: "spring" as any,
         stiffness: 100
       }
     }
@@ -41,7 +41,7 @@ const HeroSection = () => {
       transition: {
         duration: 4,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: "easeInOut" as any
       }
     }
   };
@@ -71,9 +71,9 @@ const HeroSection = () => {
       
       {/* Additional floating geometric shapes */}
       <motion.div 
-        className="absolute top-1/3 right-1/4 w-8 h-8 bg-sapphire/20 rotate-45"
-        animate={{ rotate: [0, 360] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        className="absolute top-1/3 right-1/4 w-8 h-8 bg-sapphire/20"
+        animate={{ scale: [1, 1.2, 1] }}
+        transition={{ duration: 4, repeat: Infinity }}
       />
       <motion.div 
         className="absolute bottom-1/3 left-1/3 w-6 h-6 bg-tan/30 rounded-full"

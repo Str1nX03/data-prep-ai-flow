@@ -7,6 +7,8 @@ import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import HowItWorksSection from '@/components/HowItWorksSection';
 import FeaturesSection from '@/components/FeaturesSection';
+import TestimonialsSection from '@/components/TestimonialsSection';
+import PricingSection from '@/components/PricingSection';
 import CTASection from '@/components/CTASection';
 import { motion } from 'framer-motion';
 
@@ -32,6 +34,8 @@ const Index = () => {
       <AboutSection />
       <HowItWorksSection />
       <FeaturesSection />
+      <TestimonialsSection />
+      <PricingSection />
       <CTASection />
 
       {/* Enhanced Footer */}

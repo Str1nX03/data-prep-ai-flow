@@ -12,9 +12,20 @@ const Navigation = () => {
     { name: 'About', href: '#about' },
     { name: 'How It Works', href: '#how-it-works' },
     { name: 'Features', href: '#features' },
+    { name: 'Testimonials', href: '#testimonials' },
     { name: 'Pricing', href: '#pricing' },
     { name: 'Contact', href: '#contact' }
   ];
+
+  const smoothScrollTo = (elementId: string) => {
+    const element = document.querySelector(elementId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
 
   return (
     <motion.nav 
@@ -41,7 +52,11 @@ const Navigation = () => {
                 <motion.a
                   key={item.name}
                   href={item.href}
-                  className="text-muted-foreground hover:text-accent transition-colors relative"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    smoothScrollTo(item.href);
+                  }}
+                  className="text-muted-foreground hover:text-accent transition-colors relative cursor-pointer"
                   whileHover={{ scale: 1.1 }}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -95,9 +110,13 @@ const Navigation = () => {
             <motion.a
               key={item.name}
               href={item.href}
-              className="block px-3 py-2 text-muted-foreground hover:text-accent transition-colors"
+              onClick={(e) => {
+                e.preventDefault();
+                smoothScrollTo(item.href);
+                setIsMenuOpen(false);
+              }}
+              className="block px-3 py-2 text-muted-foreground hover:text-accent transition-colors cursor-pointer"
               whileHover={{ x: 10 }}
-              onClick={() => setIsMenuOpen(false)}
             >
               {item.name}
             </motion.a>
