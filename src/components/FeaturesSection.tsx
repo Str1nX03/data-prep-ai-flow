@@ -134,8 +134,8 @@ const FeaturesSection = () => {
               <Card className="bg-secondary border-border hover:shadow-glow transition-all duration-500 h-full hover-lift">
                 <CardHeader>
                   <motion.div
-                    whileHover={{ rotate: 360, scale: 1.2 }}
-                    transition={{ duration: 0.6 }}
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
                     className="relative"
                   >
                     <feature.icon className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />
@@ -182,7 +182,8 @@ const FeaturesSection = () => {
                   <CardHeader>
                     <div className="flex items-start gap-4">
                       <motion.div
-                        whileHover={{ scale: 1.2, rotate: 15 }}
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.3 }}
                         className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0"
                       >
                         <feature.icon className="h-6 w-6 text-primary" />
@@ -242,8 +243,8 @@ const FeaturesSection = () => {
               >
                 <motion.div
                   className="w-12 h-12 bg-primary/20 rounded-lg mx-auto mb-3 flex items-center justify-center"
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
                 >
                   <feature.icon className="h-6 w-6 text-primary" />
                 </motion.div>
